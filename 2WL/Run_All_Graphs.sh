@@ -1,3 +1,4 @@
+#!/bin/sh
 sh run_tests_entire_set.sh ../matrices/appu appu.mtx ../matrices/appu appu_iso.mtx 
 sh run_tests_entire_set.sh ../matrices/bcsstk25 bcsstk25_sym.mtx ../matrices/bcsstk25 bcsstk25_sym_iso.mtx
 sh run_tests_entire_set.sh ../matrices/bcsstk36 bcsstk36_sym.mtx ../matrices/bcsstk36 bcsstk36_sym_iso.mtx
