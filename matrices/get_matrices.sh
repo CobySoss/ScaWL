@@ -152,5 +152,5 @@ g++ -std=c++11 ../util/isoCreate.c -o gen_iso_relabel
 ./make_iso.sh wang3 wang3
 ./make_sym_and_iso.sh pkustk01 pkustk01
 
-echo "Finished generating obtaining and generating matrix data"
+echo "Finished obtaining and generating matrices"
 
