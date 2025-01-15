@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 sh run_tests_entire_set.sh ../matrices/494_bus 494_bus_sym.mtx  ../matrices/494_bus 494_bus_sym_iso.mtx
 sh run_tests_entire_set.sh ../matrices/662_bus 662_bus_sym.mtx  ../matrices/662_bus 662_bus_sym_iso.mtx
 sh run_tests_entire_set.sh ../matrices/685_bus 685_bus_sym.mtx  ../matrices/685_bus 685_bus_sym_iso.mtx

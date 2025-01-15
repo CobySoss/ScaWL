@@ -1,5 +1,4 @@
 #!/bin/sh
-#SBATCH --constraint=haswell,e5-2660-v3-2.60ghz
 #SBATCH --output=%x.%j.out                # Output file (stdout)
 #SBATCH --error=%x.%j.err                 # Error file (stderr)
 
@@ -18,7 +17,7 @@ echo Running test..
 export MLX5_SINGLE_THREADED=0
 export I_MPI_JOB_TIMEOUT=432000
 export LD_PRELOAD=/opt/apps/jemalloc/5.3.0/lib/libjemalloc.so
-export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+export GOMP_CPU_AFFINITY="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"
 export OMP_PROC_BIND=TRUE
 export OMP_PLACES=cores
 export OMP_STACKSIZE=1G
