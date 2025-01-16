@@ -103,8 +103,8 @@ for file in *.gz; do
     tar -xvf "$file"
   fi
 done
-g++ -std=c++11 ../util/bidirectionAdder.c -o gen_symmetric
-g++ -std=c++11 ../util/isoCreate.c -o gen_iso_relabel
+g++ -std=c++11 ../util/bidirection_adder.c -o gen_symmetric
+g++ -std=c++11 ../util/iso_create.c -o gen_iso_relabel
 
 ./make_sym_and_iso.sh 494_bus 494_bus
 ./make_sym_and_iso.sh 662_bus 662_bus

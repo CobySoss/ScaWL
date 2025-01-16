@@ -56,7 +56,19 @@ The test configurations and graph set that is run correspond to the 2-WL and 3-W
 \<matrixName\>_\<nodeCount\>_\<coreCount\>.\<jobNumber\>.out. For example: 'appu.mtx_1Nodes_1Core.55898693.out'. Inside the result file, there will be an excel formatted
 result in the format \<graph1Location\>,\<graph2Location\>,\<numVertices\>,\<worldSize\>,\<omp_get_num_procs()\>,\<omp_get_max_threads()\>,\<timeInSeconds\>,\<isIsomorphic\>.
 The scripts were developed to make sure that the requested number of cores and the numbers of threads (by setting OMP_NUM_THREADS=cores) are the same. Therefore, in your result
-file, these two numbers should match. The example excel result from the output file above is 'appu/appu.mtx,appu/appu.mtx,14000,1,1,1,4236.13,true'.
+file, these two numbers should match. The example excel result from the output file above is 'appu/appu.mtx,appu/appu.mtx,14000,1,1,1,4236.13,true'. Below is table defining the Excel output in more detail:
+
+| Term        | Definition                                                                     |
+|-------------|--------------------------------------------------------------------------------|
+| **graph1Location**  | The directory location and name of graph 1.                            |
+| **graph2Location**  | The directory location and name of graph 2.                            |
+| **numVertices**  | The number of vertices contained in both graph 1 and graph 2.             |
+| **worldSize**  | The MPI world size. In ScaWL, this is equal to the number of compute nodes. |
+| **omp_get_num_procs()**  | The number of cores per compute node.                             |
+| **omp_get_max_threads()**  | The number of threads per compute node.                         |
+| **timeInSeconds**  | The time it takes to finish the isomorphism test in seconds.            |
+| **isIsomorphic**  | The result of the isomorphism test.                                      |
+
 
 ## Building without Jemalloc 5.3.0
 
