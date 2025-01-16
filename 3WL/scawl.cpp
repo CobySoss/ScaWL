@@ -1065,7 +1065,9 @@ initializeFromSparse(const char *g1f, const char *g2f, int vertexCount,
     free(g2.row_id);
     free(g2.col_id);
     free(g2.values); 
+    #ifdef LOAD_TIME
     auto b = std::chrono::high_resolution_clock::now();
+    #endif
 #pragma omp parallel for
     for (long k = 0; k < vertexCount; k++)
     {
@@ -1321,8 +1323,10 @@ initializeFromSparse(const char *g1f, const char *g2f, int vertexCount,
             }
         }
     }
+    #ifdef LOAD_TIME
     auto a = std::chrono::high_resolution_clock::now();
     std::cout << "time to load:" << getTimeDiff(b, a) << std::endl;
+    #endif
 #ifdef RAW_GRAPH
     std::cout << "graph 1" << std::endl;
     for (long i = 0; i < vertexCount * (long)vertexCount * (long)vertexCount; i++)
