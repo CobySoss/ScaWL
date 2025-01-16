@@ -14,7 +14,7 @@ module load intel/20.2
 module load jemalloc/5.3.0
 ```
 
-2) Navigate to either the 2WL or 3WL directory, which ever version of ScaWL you want to use.
+2) Navigate to either the 2WL or 3WL directory, whichever version of ScaWL you want to use.
 
 3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on. Inside run_tests.sh, it would look something like this:
 
@@ -32,7 +32,7 @@ mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -lje
 ```bash
 sh get_matrices.sh
 ```
-This script will retrieve the matrices from the Florida University repository and perform all data preparation.
+This script will retrieve the matrices from the University of Florida repository and perform all data preparation.
 If the graphs cannot be connected to because of ssh certificate issues, you can temporarily bypass certificate validation
 with the command:
 
@@ -70,7 +70,7 @@ module load intel/20.2
 
 2) Navigate to either the 2WL or 3WL directory, whichever version of ScaWL you want to use.
 
-3) Navigate to the file run_tests.sh. Remove the line with the LD_PRELOAD environment varable entirely.
+3) Navigate to the file run_tests.sh. Remove the line with the LD_PRELOAD environment variable entirely.
 
 4) Build the scawl executable without the command to link to Jemalloc:
 
