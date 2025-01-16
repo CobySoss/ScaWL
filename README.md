@@ -49,4 +49,7 @@ sh run_all_jobs.sh
 
 The batch jobs will be generated and an output file with the result of the isomorphism test will be produced for each test configuration.
 The test configurations and graph set that is run correspond to the 2-WL and 3-WL tests in the research paper. The output files will have the format
-\<matrixName\>_\<nodeCount\>_\<coreCount\>.\<jobNumber\>.out. For example: appu.mtx_1Nodes_1Core.55898693.out.
+\<matrixName\>_\<nodeCount\>_\<coreCount\>.\<jobNumber\>.out. For example: appu.mtx_1Nodes_1Core.55898693.out. Inside the result file, there will be an excel formatted
+result in the format \<graph1Location\>,\<graph2Location\>,\<numVertices\>,\<worldSize\>,\<omp_get_num_procs()\>,\<omp_get_max_threads\>,\<timeInSeconds\>,\<isIsomorphic\>.
+The scripts where developed to make sure that the requested number of cores and the numbers of threads (by setting OMP_NUM_THREADS=cores) are the same. Therefore, in your result
+file, these two numbers should match. The example excel result from the output file above is 'appu/appu.mtx,appu/appu.mtx,14000,1,1,1,4236.13,true'.
