@@ -49,4 +49,4 @@ sh run_all_jobs.sh
 
 The batch jobs will be generated and an output file with the result of the isomorphism test will be produced for each test configuration.
 The test configurations and graph set that is run correspond to the 2-WL and 3-WL tests in the research paper. The output files will have the format
-<matrixName>_<nodeCount>_<coreCount>.<jobNumber>.out. For example: appu.mtx_1Nodes_1Core.55898693.out.
+\<matrixName\>_\<nodeCount\>_\<coreCount\>.\<jobNumber\>.out. For example: appu.mtx_1Nodes_1Core.55898693.out.
