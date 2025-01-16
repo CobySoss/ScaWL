@@ -1,4 +1,4 @@
-# ScaWL
+# ScaWL: Scaling k-WL (Weisfeiler-Leman) Algorithms in Memory and Performance on Shared and Distributed-Memory Systems
 
 This repository contains supplementary code for the paper "ScaWL: Scaling $k$-WL (Weisfeiler-Leman) Algorithms in Memory and Performance on Shared and Distributed-Memory Systems".
 
@@ -16,7 +16,11 @@ module load jemalloc/5.3.0
 
 2) Navigate to either the 2WL or 3WL directory, which ever version of ScaWL you want to use.
 
-3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on.
+3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on. Inside run_tests.sh, it would look something like this:
+
+```bash
+export LD_PRELOAD=/path/to/your/jemalloc/5.3.0/lib/libjemalloc.so
+```
 
 4) Build the scawl executable using the following command:
 
