@@ -13,16 +13,18 @@ The code was built with the Intel version of MPI (Intel(R) MPI Library 2019 Upda
 module load intel/20.2
 module load jemalloc/5.3.0
 ```
+
 2) Navigate to either the 2WL or 3WL directory, which ever version of ScaWL you want to use.
 
-3) Build the scawl executable using the following command:
+3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl execuatable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment varable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on.
+
+4) Build the scawl executable using the following command:
 
 ```bash
-mpicxx -std=c++11 -I. -O3 -g -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -ljemalloc -fopenmp -o scawl.exe
+mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -ljemalloc -fopenmp -o scawl.exe
 ```
-<br>
 
-4) To prepare the graph data, navigate to the matrices folder and execute the script:
+5) To prepare the graph data, navigate to the matrices folder and execute the script:
 ```bash
 sh get_matrices.sh
 ```
@@ -38,7 +40,7 @@ This script will perform all the data preparation, including generating symmetri
 relabeled isomorphic matrices.
 
 
-5) Once the executable is built and the matrix data has been retrieved, you can run all the jobs by navigating back to the executable folder
+6) Once the executable is built and the matrix data has been retrieved, you can run all the jobs by navigating back to the executable folder
 and executing the script:
 
 ```bash
@@ -46,4 +48,5 @@ sh run_all_jobs.sh
 ```
 
 The batch jobs will be generated and an output file with the result of the isomorphism test will be produced for each test configuration.
-The test configurations and graph set that is run correspond to the 2-WL and 3-WL tests in the research paper.
+The test configurations and graph set that is run correspond to the 2-WL and 3-WL tests in the research paper. The output files will have the format
+<matrixName>_<nodeCount>_<coreCount>.<jobNumber>.out. For example: appu.mtx_1Nodes_1Core.55898693.out.
