@@ -94,13 +94,13 @@ You will now be using the standard memory allocator. Since the default allocator
 of the research paper as closely as possible. However, the standard allocator will get you up and running.
 
 
-#Appendix
+# Appendix
 
 This appendix covers some of the details of the scripts and programs that are used to both generate the batch jobs on the cluster as well as prepare the graph data.
 
 ## Data Preparation Scripts
 
-| Term        | Definition                                                                     |
+| Code File        | Definition                                                                     |
 |-------------|--------------------------------------------------------------------------------|
 | **degree_calc.c**  | This program was used by the research paper to calculate min and max degree for all graphs.                            |
 | **bidirection_adder.c**  | This program generates the other half of symmetric graphs in the matrix market format.                            |
@@ -112,4 +112,13 @@ This appendix covers some of the details of the scripts and programs that are us
 
 ## Scripts that Launch ScaWL
 
-The scripts in the 2-WL and 3-WL directory that launch the different configuations of ScaWL are arranged in a hiearchy that ultimately passes several parameters to the bottom-level script 
+The scripts in the 2-WL and 3-WL directory that launch the different configuations of ScaWL are arranged in a hiearchy that ultimately passes several parameters to the bottom-level script 'run_test.sh'. Below is a table describing what each of the different scripts do.
+
+| Code File        | Definition                                                                     |
+|-------------|--------------------------------------------------------------------------------|
+| **run_all_graphs.sh**  | This script calls the top-most script for each graph, passing both graphs and the time to allot for the batch job.                            |
+| **run_tests_entire_set.sh**  | This script calls the scripts for both multnode and single node test configurations, passing down graph and time allotment parameters for the batch job.                            |
+| **run_tests_multnode_driver.sh**  | This script calls all the lower-level scripts to run all multinode configurations, passing down graph and time allotment parameters for the batch job, in addition to adding parameters for memory, node count, and core count.             |
+| **run_tests_singlenode_driver.sh**  | This script calls all the lower-level scripts to run all single node configuratino, passing down graph and time allotment parameters for the batch job, in addition to adding parameters for memory, node count, and core count.  |
+| **run_tests_main.sh**  | This script passes down all accumulated parameters and some environment variables to the final script run_test.sh.         |
+| **run_test.sh**  | This script takes all the parameters that have been passed and uses them to launch ScaWL in the configuration the parameters specify.             |
