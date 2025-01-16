@@ -33,7 +33,7 @@ mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -lje
 sh get_matrices.sh
 ```
 This script will retrieve the matrices from the University of Florida repository and perform all data preparation.
-If the graphs cannot be connected to because of ssh certificate issues, you can temporarily bypass certificate validation
+If the graphs cannot be connected to because of SSH certificate issues, you can temporarily bypass certificate validation
 with the command:
 
 ```bash
