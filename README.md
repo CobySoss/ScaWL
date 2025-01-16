@@ -2,7 +2,7 @@
 
 This repository contains supplementary code for the paper "ScaWL: Scaling $k$-WL (Weisfeiler-Leman) Algorithms in Memory and Performance on Shared and Distributed-Memory Systems".
 
-You will need a version of MPI and OpenMP to compile this code. The set of instructions below are for compiling the code for maximum reproducibility and therefore are using
+You will need a version of MPI and OpenMP to compile this code. The set of instructions below is for compiling the code for maximum reproducibility and therefore is using
 the same libraries that we used for running the test. The version of OpenMP used in this configuration is OpenMP 4.5.
 
 The code was built with the Intel version of MPI (Intel(R) MPI Library 2019 Update 8 for Linux). GCC 7.3.0 was used as the compiler and Jemalloc 5.3.0 was used as the memory allocator. Assuming that both of these libraries are available as modules on your cluster follow the steps below:
@@ -16,13 +16,13 @@ module load jemalloc/5.3.0
 
 2) Navigate to either the 2WL or 3WL directory, whichever version of ScaWL you want to use.
 
-3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on. Inside run_tests.sh, it would look something like this:
+3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the ScaWL executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location on the cluster ScaWL was tested on. Inside run_tests.sh, it would look something like this:
 
 ```bash
 export LD_PRELOAD=/path/to/your/jemalloc/5.3.0/lib/libjemalloc.so
 ```
 
-4) Build the scawl executable using the following command:
+4) Build the ScaWL executable using the following command:
 
 ```bash
 mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -ljemalloc -fopenmp -o scawl.exe
@@ -62,7 +62,7 @@ file, these two numbers should match. The example excel result from the output f
 
 If Jemalloc 5.3.0 is not available on your cluster, try contacting your cluster administrator to get it installed. If that is not possible, the steps to build without Jemalloc are as follows:
 
-1) Load just the intel module:
+1) Load just the Intel module:
 
 ```bash
 module load intel/20.2
@@ -72,7 +72,7 @@ module load intel/20.2
 
 3) Navigate to the file run_tests.sh. Remove the line with the LD_PRELOAD environment variable entirely.
 
-4) Build the scawl executable without the command to link to Jemalloc:
+4) Build the ScaWL executable without the command to link to Jemalloc:
 
 ```bash
 mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -fopenmp -o scawl.exe
