@@ -92,3 +92,24 @@ mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -fop
 
 You will now be using the standard memory allocator. Since the default allocator is less performant than Jemalloc, you will likely get slower overall speeds and more memory fragmentation. This fragmentation will likely lead to more frequent failed allocations. Therefore, it is highly recommended to use Jemalloc if your goal is to reproduce the results
 of the research paper as closely as possible. However, the standard allocator will get you up and running.
+
+
+#Appendix
+
+This appendix covers some of the details of the scripts and programs that are used to both generate the batch jobs on the cluster as well as prepare the graph data.
+
+## Data Preparation Scripts
+
+| Term        | Definition                                                                     |
+|-------------|--------------------------------------------------------------------------------|
+| **degree_calc.c**  | This program was used by the research paper to calculate min and max degree for all graphs.                            |
+| **bidirection_adder.c**  | This program generates the other half of symmetric graphs in the matrix market format.                            |
+| **iso_create.c**  | This program creates an isomorphic version of the input graph by reversing the labels.             |
+| **get_matrices.h**  | This script retrieves all the matrices for the University of Florida website, compiles bidirection_adder.c and iso_create.c, and finally calls make_iso.h or make_sym_and_iso.h. Whether make_iso.h or make_sym_and_iso.h is called depends on the requirements of the graph.                            |
+| **make_iso.h**  | This script calls the iso_create program to genenate and isomorphic version of the input graph. It appends _iso.mtx to the mtx file.         |
+| **make_sym_and_iso.h**  | This scripts calls both the bidirection_adder and iso_create program back-to-back, appending both _sym_iso.mtx to the mtx file.             |
+
+
+## Scripts that Launch ScaWL
+
+The scripts in the 2-WL and 3-WL directory that launch the different configuations of ScaWL are arranged in a hiearchy that ultimately passes several parameters to the bottom-level script 
