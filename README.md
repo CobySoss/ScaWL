@@ -16,7 +16,7 @@ module load jemalloc/5.3.0
 
 2) Navigate to either the 2WL or 3WL directory, which ever version of ScaWL you want to use.
 
-3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl execuatable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment varable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on.
+3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the Scawl executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location it was located on the cluster ScaWL was tested on.
 
 4) Build the scawl executable using the following command:
 
@@ -49,7 +49,30 @@ sh run_all_jobs.sh
 
 The batch jobs will be generated and an output file with the result of the isomorphism test will be produced for each test configuration.
 The test configurations and graph set that is run correspond to the 2-WL and 3-WL tests in the research paper. The output files will have the format
-\<matrixName\>_\<nodeCount\>_\<coreCount\>.\<jobNumber\>.out. For example: appu.mtx_1Nodes_1Core.55898693.out. Inside the result file, there will be an excel formatted
+\<matrixName\>_\<nodeCount\>_\<coreCount\>.\<jobNumber\>.out. For example: 'appu.mtx_1Nodes_1Core.55898693.out'. Inside the result file, there will be an excel formatted
 result in the format \<graph1Location\>,\<graph2Location\>,\<numVertices\>,\<worldSize\>,\<omp_get_num_procs()\>,\<omp_get_max_threads\>,\<timeInSeconds\>,\<isIsomorphic\>.
-The scripts where developed to make sure that the requested number of cores and the numbers of threads (by setting OMP_NUM_THREADS=cores) are the same. Therefore, in your result
+The scripts were developed to make sure that the requested number of cores and the numbers of threads (by setting OMP_NUM_THREADS=cores) are the same. Therefore, in your result
 file, these two numbers should match. The example excel result from the output file above is 'appu/appu.mtx,appu/appu.mtx,14000,1,1,1,4236.13,true'.
+
+## Building without Jemalloc 5.3.0
+
+If Jemalloc 5.3.0 is not available on your cluster, try contacting your cluster administrator to get it installed. If that is not possible, the steps to build without Jemalloc are as follows:
+
+1) Load just the intel module:
+
+```bash
+module load intel/20.2
+```
+
+2) Navigate to either the 2WL or 3WL directory, whichever version of ScaWL you want to use.
+
+3) Navigate to the file run_tests.sh. Remove the line with the LD_PRELOAD environment varable entirely.
+
+4) Build the scawl executable without the command to link to Jemalloc:
+
+```bash
+mpicxx -std=c++11 -I. -O3 -DEXCEL_OUTPUT -DALL_TO_ALL_V scawl.cpp -lpthread -fopenmp -o scawl.exe
+```
+
+You will now be using the standard memory allocator. Since the default allocator is less performant than Jemalloc, you will likely get slower overall speeds and more memory fragmentation. This fragmentation will likely lead to more frequent failed allocations. Therefore, it is highly recommended to use Jemalloc if your goal is to reproduce the results
+of the research paper as closely as possible. However, the standard allocator will get you up and running.
