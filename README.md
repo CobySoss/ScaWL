@@ -16,7 +16,7 @@ module load jemalloc/5.3.0
 
 2) Navigate to either the 2WL or 3WL directory, whichever version of ScaWL you want to use.
 
-3) Navigate to the file run_tests.sh. This is the lowest-level script file that launches the ScaWL executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location on the cluster ScaWL was tested on. Inside run_tests.sh, it would look something like this:
+3) Navigate to the file run_test.sh. This is the lowest-level script file that launches the ScaWL executable and contains the environment variables that the executable runs with. Make sure the LD_PRELOAD environment variable is pointing to the appropriate jemalloc library. By default, it is pointing to the location on the cluster ScaWL was tested on. Inside run_test.sh, it would look something like this:
 
 ```bash
 export LD_PRELOAD=/path/to/your/jemalloc/5.3.0/lib/libjemalloc.so
@@ -82,7 +82,7 @@ module load intel/20.2
 
 2) Navigate to either the 2WL or 3WL directory, whichever version of ScaWL you want to use.
 
-3) Navigate to the file run_tests.sh. Remove the line with the LD_PRELOAD environment variable entirely.
+3) Navigate to the file run_test.sh. Remove the line with the LD_PRELOAD environment variable entirely.
 
 4) Build the ScaWL executable without the command to link to Jemalloc:
 
