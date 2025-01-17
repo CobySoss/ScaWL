@@ -48,7 +48,7 @@ relabeled isomorphic matrices.
 and executing the script:
 
 ```bash
-sh run_all_jobs.sh
+sh run_all_graphs.sh
 ```
 
 The batch jobs will be generated and an output file with the result of the isomorphism test will be produced for each test configuration.
