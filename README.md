@@ -105,9 +105,9 @@ This appendix covers some of the details of the scripts and programs that are us
 | **degree_calc.c**  | This program was used by the research paper to calculate min and max degree for all graphs.                            |
 | **bidirection_adder.c**  | This program generates the other half of symmetric graphs in the matrix market format.                            |
 | **iso_create.c**  | This program creates an isomorphic version of the input graph by reversing the labels.             |
-| **get_matrices.h**  | This script retrieves all the matrices for the University of Florida website, compiles bidirection_adder.c and iso_create.c, and finally calls make_iso.h or make_sym_and_iso.h. Whether make_iso.h or make_sym_and_iso.h is called depends on the requirements of the graph.                            |
-| **make_iso.h**  | This script calls the iso_create program to genenate and isomorphic version of the input graph. It appends _iso.mtx to the mtx file.         |
-| **make_sym_and_iso.h**  | This scripts calls both the bidirection_adder and iso_create program back-to-back, appending both _sym_iso.mtx to the mtx file.             |
+| **get_matrices.h**  | This script retrieves all the matrices from the University of Florida website, compiles bidirection_adder.c and iso_create.c, and finally calls make_iso.sh or make_sym_and_iso.sh. Whether make_iso.sh or make_sym_and_iso.sh is called depends on the requirements of the graph.                            |
+| **make_iso.h**  | This script calls the iso_create program to genenate an isomorphic version of the input graph. It appends _iso.mtx to the mtx file.         |
+| **make_sym_and_iso.h**  | This scripts calls both the bidirection_adder and iso_create program back-to-back, appending _sym_iso.mtx to the mtx file.             |
 
 
 ## Scripts that Launch ScaWL
@@ -116,9 +116,9 @@ The scripts in the 2-WL and 3-WL directory that launch the different configuatio
 
 | Code File        | Definition                                                                     |
 |-------------|--------------------------------------------------------------------------------|
-| **run_all_graphs.sh**  | This script calls the top-most script for each graph, passing both graphs and the time to allot for the batch job.                            |
-| **run_tests_entire_set.sh**  | This script calls the scripts for both multnode and single node test configurations, passing down graph and time allotment parameters for the batch job.                            |
+| **run_all_graphs.sh**  | This script calls the top-most script for each graph, passing both graphs and the time to allotment for the batch job.                            |
+| **run_tests_entire_set.sh**  | This script calls the scripts for both the multnode and single node test configurations, passing down graph and time allotment parameters for the batch job.                            |
 | **run_tests_multnode_driver.sh**  | This script calls all the lower-level scripts to run all multinode configurations, passing down graph and time allotment parameters for the batch job, in addition to adding parameters for memory, node count, and core count.             |
-| **run_tests_singlenode_driver.sh**  | This script calls all the lower-level scripts to run all single node configuratino, passing down graph and time allotment parameters for the batch job, in addition to adding parameters for memory, node count, and core count.  |
+| **run_tests_singlenode_driver.sh**  | This script calls all the lower-level scripts to run all single node configurations, passing down graph and time allotment parameters for the batch job, in addition to adding parameters for memory, node count, and core count.  |
 | **run_tests_main.sh**  | This script passes down all accumulated parameters and some environment variables to the final script run_test.sh.         |
 | **run_test.sh**  | This script takes all the parameters that have been passed and uses them to launch ScaWL in the configuration the parameters specify.             |
