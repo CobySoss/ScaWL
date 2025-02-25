@@ -6440,10 +6440,23 @@ int main(int argc, char *argv[])
 #endif
     if (argc == 3)
     {
+        fstream file1(argv[1]);
+        fstream file2(argv[2]);
+        if(!file1.good())
+        {
+            std::cout << "first file argument " << argv[1] << " not found." << std::endl;
+            MPI_Finalize();
+            return 1;
+        }
+        if(!file2.good())
+        {
+            std::cout << "second file argument " << argv[2] << " not found." << std::endl;
+            MPI_Finalize();
+            return 1;
+        }
         int nrow1, ncol1, nrow2, ncol2;
         read_matrix_market_size(argv[1], nrow1, ncol1);
         read_matrix_market_size(argv[2], nrow2, ncol2);
-        
         bool result = (nrow1 == ncol1 && nrow2 == ncol2 && nrow1 == nrow2);
         if (!result)
         {
