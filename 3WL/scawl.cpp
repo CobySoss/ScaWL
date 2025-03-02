@@ -6205,7 +6205,7 @@ GraphData* InternodeLoadBalance(GraphData* graphData, int vertexCount, int rank,
     return graphData;
 }
 
-bool TwoDimFWL(const char *g1f, const char *g2f, int vertexCount, int *g1, int *g2,
+bool ThreeWL(const char *g1f, const char *g2f, int vertexCount, int *g1, int *g2,
                int rank, int worldSize)
 {
     long totalBinWork = 0;
@@ -6345,13 +6345,13 @@ bool TwoDimFWL(const char *g1f, const char *g2f, int vertexCount, int *g1, int *
     return isomorphic;
 }
 
-bool TimedTwoFWL(const char *g1filename, const char *g2filename, int vertexCount,
+bool TimedThreeWL(const char *g1filename, const char *g2filename, int vertexCount,
                  int *g1, int *g2, int rank, int worldSize)
 {
     double seconds;
     clock_t before = clock() / (CLOCKS_PER_SEC / 1000);
     auto b = std::chrono::high_resolution_clock::now();
-    bool result = TwoDimFWL(g1filename, g2filename, vertexCount, g1, g2, rank,
+    bool result = ThreeWL(g1filename, g2filename, vertexCount, g1, g2, rank,
                             worldSize);
     auto a = std::chrono::high_resolution_clock::now();
     clock_t after = clock() / (CLOCKS_PER_SEC / 1000);
@@ -6465,7 +6465,7 @@ int main(int argc, char *argv[])
                       << " are not isomorphic";
 #endif
         }
-        result = TimedTwoFWL(argv[1], argv[2], nrow1, NULL, NULL, world_rank,
+        result = TimedThreeWL(argv[1], argv[2], nrow1, NULL, NULL, world_rank,
                              world_size);
 #ifdef RESULT_DEBUG
         std::cout << "Graph " << argv[1] << " and Graph " << argv[2] << ":"
